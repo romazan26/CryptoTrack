@@ -17,9 +17,18 @@ final class HomeViewModel: ObservableObject {
     @Published var selectedVew = 1
     @Published var isPresentSetting: Bool = false
     
+    //MARK: - Search propertyes
+    @Published var searchCoins: String = ""
+    @Published var isPresesntSearch: Bool = false
+    @Published var compareCoins: CryptoCoin?
+    
     //MARK: - Favorites propertyes
     @Published var isFavoritesOrLisrt: Bool = true
-    @Published var favoritesCoins: [CryptoCoin] = []
+    @Published var favoriteCoins: Set<String> = [] {
+        didSet{
+            saveFavorites()
+        }
+    }
     
     //MARK: - Coins Properyes
     let service = CoinGeckoService()
@@ -40,7 +49,50 @@ final class HomeViewModel: ObservableObject {
     init() {
         getCoins()
         loadUser()
+        loadFavorites()
     }
+    
+    
+    //MARK: - Search coin func
+    func isSearching(coin: CryptoCoin) -> Bool {
+        guard !searchCoins.isEmpty else {
+            return true // Если строка поиска пустая, показываем все монеты
+        }
+        return coin.symbol.uppercased().contains(searchCoins.uppercased())
+    }
+    
+    func isChoose(coin: CryptoCoin) -> Bool {
+        compareCoins?.id == coin.id
+    }
+    
+    //MARK: - Favorites coins func
+    // Метод для добавления монеты в избранное
+        func addFavorite(coin: CryptoCoin) {
+            favoriteCoins.insert(coin.id)
+        }
+        
+        // Метод для удаления монеты из избранного
+        func removeFavorite(coin: CryptoCoin) {
+            favoriteCoins.remove(coin.id)
+        }
+        
+        // Проверка, является ли монета избранной
+        func isFavorite(coin: CryptoCoin) -> Bool {
+            favoriteCoins.contains(coin.id)
+        }
+        
+        // Загрузка избранного из UserDefaults
+        private func loadFavorites() {
+            if let savedFavorites = UserDefaults.standard.array(forKey: "FavoriteCoins") as? [String] {
+                favoriteCoins = Set(savedFavorites)
+            }
+        }
+        
+        // Сохранение избранного в UserDefaults
+        private func saveFavorites() {
+            UserDefaults.standard.set(Array(favoriteCoins), forKey: "FavoriteCoins")
+        }
+    
     //MARK: - User Default
        private func saveUser() {
            guard let user = user else { return }

@@ -20,12 +20,14 @@ struct FavoritesCoinsView: View {
                 CustomSwitchButtonView(isOn: $vm.isFavoritesOrLisrt , nameFirst: "List" , nameSecond: "Favorites")
                 
                 if vm.isFavoritesOrLisrt {
-                    CoinsTableView(coins: vm.coins, backGroundImage: false)
+                    CoinsTableView(coins: vm.coins, vm: vm, backGroundImage: false)
                 }else{
-                    if vm.favoritesCoins.isEmpty{
+                    if vm.favoriteCoins.isEmpty{
                         NoFavoritesCoinsView()
                     }else{
-                        CoinsTableView(coins: vm.favoritesCoins, backGroundImage: false)
+                        CoinsTableView(coins: vm.coins.filter({vm.isFavorite(coin: $0)}),
+                                       vm: vm,
+                                       backGroundImage: false)
                     }
                 }
                 Spacer()

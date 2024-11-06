@@ -48,8 +48,9 @@ struct CoinRowView: View {
                     .foregroundColor(coin.priceChangePercentage24h >= 0 ? .green : .red)
                 Text(String(format: "%.2f%%", coin.priceChangePercentage24h))
                     .foregroundColor(coin.priceChangePercentage24h >= 0 ? .green : .red)
+                    .font(.system(size: 12))
             }
-            .frame(width: 50, alignment: .trailing)
+            .frame(width: 65, alignment: .trailing)
         }
         .padding([.top, .bottom], 8)
     }
@@ -72,4 +73,10 @@ struct CoinRowView: View {
     }
 }
 
-
+#Preview {
+    ZStack {
+        Color.gray
+        CoinRowView(coin: PreviewData.instance.makePreviewCryptoCoin())
+            .padding()
+    }
+}

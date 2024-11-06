@@ -12,7 +12,7 @@ struct HomeVew: View {
     var body: some View {
         VStack(spacing: 10) {
             UserCellView(user: vm.user ?? User(name: "Hi!", photo: nil, quotes: ""))
-            CoinsTableView(coins: vm.coins)
+            CoinsTableView(coins: vm.coins, vm: vm)
             VStack(alignment: .leading){
                 Text("Latest news")
                     .foregroundStyle(.white)

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CoinsTableView: View {
      var coins: [CryptoCoin]
+    
+    @StateObject var vm: HomeViewModel
     var backGroundImage = true
     var body: some View {
         VStack(alignment: .leading) {
@@ -33,11 +35,19 @@ struct CoinsTableView: View {
                     
                     ScrollView {
                         ForEach(coins, id: \.id) { coin in
-                            CoinRowView(coin: coin)
-                            RoundedRectangle(cornerRadius: 20)
-                                .frame(height: 1)
-                                .frame(maxWidth: .infinity)
-                                .foregroundStyle(.gray)
+                            NavigationLink {
+                                CoinsCompareView(vm: vm, coin: coin)
+                            } label: {
+                                VStack{
+                                    CoinRowView(coin: coin)
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .frame(height: 1)
+                                        .frame(maxWidth: .infinity)
+                                        .foregroundStyle(.gray)
+                                }
+                            }
+
+                            
                         }
                     }
                 }
@@ -55,6 +65,6 @@ struct CoinsTableView: View {
     }
 }
 
-//#Preview {
-//    CoinsTableView()
-//}
+#Preview {
+    CoinsTableView(coins: PreviewData.instance.makePreviewCryptoCoins(), vm: HomeViewModel())
+}
