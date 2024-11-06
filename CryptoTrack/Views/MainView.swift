@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     @StateObject var vmHome = HomeViewModel()
+    @StateObject var vmNews = NewsViewModel()
     var body: some View {
         NavigationView {
             ZStack {
@@ -17,7 +18,7 @@ struct MainView: View {
                     switch vmHome.selectedVew {
                     case 1: HomeVew(vm: vmHome)
                     case 2: FavoritesCoinsView(vm: vmHome)
-                    case 3: Text("News")
+                    case 3: NewsView(vm: vmNews)
                     default:
                         Text("Settings")
                     }
