@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ListCompareCoinsView: View {
     @StateObject var vm: HomeViewModel
+    @FocusState var keyboardFocus: Bool
     var body: some View {
         ZStack {
             Color.compareColorBack.ignoresSafeArea()
@@ -29,6 +30,8 @@ struct ListCompareCoinsView: View {
                 
                 //MARK: - Search text field
                 SearchTextFieldView(searchText: $vm.searchCoins)
+                    .focused($keyboardFocus)
+                
                 
                 //MARK: - List coins
                 ScrollView {
@@ -47,6 +50,8 @@ struct ListCompareCoinsView: View {
                     }
                 }
             }.padding()
+        }.onTapGesture {
+            keyboardFocus = false
         }
     }
 }

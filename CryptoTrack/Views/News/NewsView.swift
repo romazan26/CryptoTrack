@@ -23,7 +23,7 @@ struct NewsView: View {
                 
                 //MARK: - Add button
                 NavigationLink {
-                    AddNewsView()
+                    AddNewsView(vm: vm)
                 } label: {
                     CustomButtonView(title: "Add a news item")
                 }
@@ -35,11 +35,10 @@ struct NewsView: View {
                     }else{
                         ForEach(vm.news) { news in
                             NavigationLink {
-                                NewsInfoView()
+                                NewsInfoView(news: news, vm: vm)
                             } label: {
-                                
+                                NewsCellView(news: news)
                             }
-
                         }
                     }
                 }
