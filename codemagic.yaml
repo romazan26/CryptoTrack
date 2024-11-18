@@ -16,7 +16,7 @@ workflows:
           XCODE_PROJECT: "CryptoTrack" # <-- Put the name of your workspace here.
           XCODE_SCHEME: "CryptoTrack" # <-- Put the name of your scheme here.
           BUNDLE_ID: "com.arm.crypt0tr4ck" # <-- Put your Bundle Id here.
-          APP_STORE_APPLE_ID: 6736395538 # <-- Put the app id number here. This is found in App Store Connect > App > General > App Information
+          APP_STORE_APPLE_ID: 6738329014 # <-- Put the app id number here. This is found in App Store Connect > App > General > App Information
         xcode: latest # <-- set to specific version e.g. 14.3, 15.0 to avoid unexpected updates.
         cocoapods: default
       triggering:
