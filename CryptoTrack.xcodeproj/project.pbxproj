@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -336,7 +336,6 @@
 				};
 			};
 			buildConfigurationList = 3050786B2CDA035900385A43 /* Build configuration list for PBXProject "CryptoTrack" */;
-			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -344,6 +343,8 @@
 				Base,
 			);
 			mainGroup = 305078672CDA035900385A43;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
 			productRefGroup = 305078712CDA035900385A43 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
